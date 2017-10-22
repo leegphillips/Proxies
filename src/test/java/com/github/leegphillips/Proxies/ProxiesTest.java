@@ -98,7 +98,6 @@ public class ProxiesTest {
         System.setProperty("java.util.concurrent.ForkJoinPool.common.parallelism", "256");
         String proxyList = IOUtils.toString(ClassLoader.getSystemClassLoader().getResourceAsStream("proxies2.txt"), Charset.defaultCharset());
         List<Proxy> proxies = stream(proxyList.split("\n")).parallel()
-//                .filter(line -> line.contains("Elite"))
                 .map(ProxyFactory::create)
                 .filter(ProxyFactory::check)
                 .collect(toList());
